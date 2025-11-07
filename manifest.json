@@ -5,7 +5,7 @@
   "description": "A simple listing calculator extension for quick calculations.",
   "permissions": ["scripting", "tabs"],
   "action": {
-    "default_icon": "assets/sesimi-calculator-icon-lg.png",
+    "default_icon": "assets/sesimi-calc-light.png",
     "default_popup": "popup.html"
   }
 }

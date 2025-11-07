@@ -1,0 +1,40 @@
+body {
+  width: 300px;
+  background-color: #141414;
+  text-align: center;
+  color: #ffffff;
+  margin: 0;
+}
+
+header {
+  background-color: #313131;
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+}
+main {
+  margin: 25px;
+}
+button {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #d1ff3b;
+  width: 50%;
+}
+
+.label-text {
+  font-size: 18px;
+  padding-right: 10px;
+}
+
+input {
+  border: #313131 2px solid;
+  background-color: #141414;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.currency {
+  color: #f74c07;
+}

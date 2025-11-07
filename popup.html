@@ -8,35 +8,60 @@
     <script src="scripts/popup.js" defer></script>
   </head>
   <body>
-    <h1>Sesimi Listing Calculator</h1>
-    <form>
-      <label for="total_cars">Total Cars</label>
-      <input
-        type="number"
-        id="total_cars"
-        name="total_cars"
-        required
-      /><br /><br />
+    <header>
+      <h1 class="title">Listing Calculator</h1>
+    </header>
+    <main>
+      <form>
+        <label for="total_cars"
+          ><span class="label-text">Total Cars</span></label
+        >
+        <input
+          type="number"
+          id="total_cars"
+          name="total_cars"
+          placeholder="Enter total cars"
+          required
+        /><br /><br />
 
-      <label for="new_cars">New Cars</label>
-      <input type="number" id="new_cars" name="new_cars" required /><br /><br />
-      <label for="cpo_cars">CPO Cars</label>
-      <input type="number" id="cpo_cars" name="cpo_cars" required /><br /><br />
+        <label for="new_cars"><span class="label-text">New Cars</span></label>
+        <input
+          type="number"
+          placeholder="Enter new cars"
+          id="new_cars"
+          name="new_cars"
+          required
+        /><br /><br />
+        <label for="cpo_cars"><span class="label-text">CPO Cars</span></label>
+        <input
+          type="number"
+          placeholder="Enter CPO cars"
+          id="cpo_cars"
+          name="cpo_cars"
+          required
+        /><br /><br />
 
-      <label for="original_amount">Original Amount ($):</label>
-      <input
-        type="number"
-        id="original_amount"
-        name="original_amount"
-        step="0.01"
-        required
-      /><br /><br />
-
+        <label for="original_amount"
+          ><span class="label-text">Original ($)</span></label
+        >
+        <input
+          type="number"
+          id="original_amount"
+          name="original_amount"
+          placeholder="Enter original $"
+          step="0.01"
+          required
+        /><br /><br />
+      </form>
       <button type="button" id="calculateBtn">Calculate</button>
-
-      <h2>Results:</h2>
-      <h3>New Cars: <span id="new_cars_result">$0.00</span></h3>
-      <h3>CPO Cars: <span id="cpo_cars_result">$0.00</span></h3>
-    </form>
+      <h3>
+        New Cars: <span class="currency">$</span>
+        <span id="new_cars_result">0.00</span>
+      </h3>
+      <h3>
+        CPO Cars: <span class="currency">$</span>
+        <span id="cpo_cars_result">0.00</span>
+      </h3>
+    </main>
   </body>
 </html>
