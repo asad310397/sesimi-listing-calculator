@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Sesimi Calculator",
+  "version": "1.0",
+  "description": "A simple listing calculator extension for quick calculations.",
+  "permissions": ["scripting", "tabs"],
+  "action": {
+    "default_icon": "assets/sesimi-calculator-icon-lg.png",
+    "default_popup": "popup.html"
+  }
+}
