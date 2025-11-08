@@ -15,12 +15,23 @@ header {
 main {
   margin: 25px;
 }
-button {
+
+#calculateBtn {
+  font-weight: bold;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   background-color: #d1ff3b;
   width: 50%;
+}
+#clearBtn {
+  color: #ffffff;
+  border: #d1ff3b 2px solid;
+  border-radius: 5px;
+  padding: 8%;
+  background-color: #141414;
+  width: 25%;
+  margin-left: 10px;
 }
 
 .label-text {
@@ -32,6 +43,7 @@ input {
   border: #313131 2px solid;
   background-color: #141414;
   border-radius: 5px;
+  color: #ffffff;
   padding: 10px;
 }
 
