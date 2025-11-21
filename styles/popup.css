@@ -94,5 +94,6 @@ input {
   .active {
     background-color: #d1ff3b;
     color: #000000;
+    font-weight: bold;
   }
 }
