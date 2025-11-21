@@ -27,7 +27,18 @@ function calculateEmailResults() {
     original_amount
   );
 
-  chrome.storage.local.set({ ["new_amount"]: new_amount_result.toFixed(2) });
+  chrome.storage.local.set({
+    ["new_amount"]: 1 - new_amount_result.toFixed(2),
+  });
+
+  document.getElementById("excl_amount").textContent = emailText(
+    new_amount_result,
+    original_amount
+  );
+
+  chrome.storage.local.set({
+    ["excl_amount"]: new_amount_result.toFixed(2),
+  });
 }
 
 function clearEmailResults() {
@@ -39,6 +50,9 @@ function clearEmailResults() {
 
   chrome.storage.local.remove("new_amount");
   document.getElementById("new_amount").textContent = "0.00";
+
+  chrome.storage.local.remove("excl_amount");
+  document.getElementById("excl_amount").textContent = "0.00";
 }
 
 const onEmailLoad = () => {
@@ -58,6 +72,17 @@ const onEmailLoad = () => {
           );
         } else {
           document.getElementById("new_amount").textContent = "0.00";
+        }
+      });
+
+      chrome.storage.local.get(["excl_amount"], (result) => {
+        if (result["excl_amount"]) {
+          document.getElementById("excl_amount").textContent = emailText(
+            parseFloat(result["excl_amount"]),
+            original_amount
+          );
+        } else {
+          document.getElementById("excl_amount").textContent = "0.00";
         }
       });
     }

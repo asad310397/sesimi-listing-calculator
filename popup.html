@@ -88,49 +88,61 @@
       <!-- ======================= -->
       <div id="email-calculator">
         <form>
-          <label for="x_one"
-            ><span class="label-text">Original Width</span></label
-          >
-          <input
-            type="number"
-            id="x_one"
-            name="x_one"
-            placeholder="Enter Original Width"
-            required
-          /><br /><br />
+          <div class="input-row">
+            <div class="input-group">
+              <label for="x_one"
+                ><span class="label-text">Org. Width</span></label
+              >
+              <input
+                type="number"
+                id="x_one"
+                name="x_one"
+                placeholder="Enter Original Width"
+                required
+              />
+            </div>
 
-          <label for="y_one"
-            ><span class="label-text">Original Height</span></label
-          >
+            <div class="input-group">
+              <label for="y_one"
+                ><span class="label-text">Org. Height</span></label
+              >
+              <input
+                type="number"
+                placeholder="Enter Original Height"
+                id="y_one"
+                name="y_one"
+                required
+              />
+            </div>
+          </div>
 
-          <input
-            type="number"
-            placeholder="Enter Original Height"
-            id="y_one"
-            name="y_one"
-            required
-          /><br /><br />
-          <label for="x_two"
-            ><span class="label-text">Excluded Width</span></label
-          >
-          <input
-            type="number"
-            placeholder="Enter Excluded Width"
-            id="x_two"
-            name="x_two"
-            required
-          /><br /><br />
+          <div class="input-row">
+            <div class="input-group">
+              <label for="x_two"
+                ><span class="label-text">Excl. Width</span></label
+              >
+              <input
+                type="number"
+                placeholder="Enter Excluded Width"
+                id="x_two"
+                name="x_two"
+                required
+              />
+            </div>
 
-          <label for="y_two"
-            ><span class="label-text">Excluded Height</span></label
-          >
-          <input
-            type="number"
-            id="y_two"
-            name="y_two"
-            placeholder="Enter Excluded Height"
-            required
-          /><br /><br />
+            <div class="input-group">
+              <label for="y_two"
+                ><span class="label-text">Excl. Height</span></label
+              >
+              <input
+                type="number"
+                id="y_two"
+                name="y_two"
+                placeholder="Enter Excluded Height"
+                required
+              />
+            </div>
+          </div>
 
           <label for="email_original_amount"
             ><span class="label-text">Original ($)</span></label
@@ -152,6 +164,10 @@
         <h3>
           New Amount: <span class="currency">$</span>
           <span id="new_amount">0.00</span>
+        </h3>
+        <h3>
+          Excl. Amount: <span class="currency">-$</span>
+          <span id="excl_amount">0.00</span>
         </h3>
       </div>
       <!-- ======================= -->
