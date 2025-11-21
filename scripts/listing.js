@@ -1,10 +1,5 @@
 function listingText(result, original_amount) {
-  return (
-    result.toFixed(2) +
-    " (-" +
-    (original_amount - result.toFixed(2)).toFixed(2) +
-    ")"
-  );
+  return result + " (-" + (original_amount - result).toFixed(2) + ")";
 }
 function calculateListingResults() {
   const new_cars = parseFloat(document.getElementById("new_cars").value) || 0;
@@ -23,11 +18,11 @@ function calculateListingResults() {
   let cpoCarResult = (cpo_cars / total_cars) * original_amount;
 
   document.getElementById("new_cars_result").textContent = listingText(
-    newCarResult,
+    newCarResult.toFixed(2),
     original_amount
   );
   document.getElementById("cpo_cars_result").textContent = listingText(
-    cpoCarResult,
+    cpoCarResult.toFixed(2),
     original_amount
   );
 
@@ -53,31 +48,32 @@ const onListingLoad = () => {
   chrome.storage.local.get(["original_amount"], (result) => {
     if (result["original_amount"]) {
       original_amount = parseFloat(result["original_amount"]);
-    }
-  });
-  if (original_amount === 0) {
-    return;
-  }
 
-  chrome.storage.local.get(["new_cars_result"], (result) => {
-    if (result["new_cars_result"]) {
-      document.getElementById("new_cars_result").textContent = listingText(
-        parseFloat(result["new_cars_result"]),
-        original_amount
-      );
-    } else {
-      document.getElementById("new_cars_result").textContent = "0.00";
-    }
-  });
+      if (original_amount === 0) {
+        return;
+      }
 
-  chrome.storage.local.get(["cpo_cars_result"], (result) => {
-    if (result["cpo_cars_result"]) {
-      document.getElementById("cpo_cars_result").textContent = listingText(
-        parseFloat(result["cpo_cars_result"]),
-        original_amount
-      );
-    } else {
-      document.getElementById("cpo_cars_result").textContent = "0.00";
+      chrome.storage.local.get(["new_cars_result"], (result) => {
+        if (result["new_cars_result"]) {
+          document.getElementById("new_cars_result").textContent = listingText(
+            parseFloat(result["new_cars_result"]),
+            original_amount
+          );
+        } else {
+          document.getElementById("new_cars_result").textContent = "0.00";
+        }
+      });
+
+      chrome.storage.local.get(["cpo_cars_result"], (result) => {
+        if (result["cpo_cars_result"]) {
+          document.getElementById("cpo_cars_result").textContent = listingText(
+            parseFloat(result["cpo_cars_result"]),
+            original_amount
+          );
+        } else {
+          document.getElementById("cpo_cars_result").textContent = "0.00";
+        }
+      });
     }
   });
 };

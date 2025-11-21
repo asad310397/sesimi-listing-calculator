@@ -42,7 +42,26 @@ function clearEmailResults() {
 }
 
 const onEmailLoad = () => {
-  calculateEmailResults();
+  chrome.storage.local.get(["email_original_amount"], (result) => {
+    if (result["email_original_amount"]) {
+      const original_amount = parseFloat(result["email_original_amount"]);
+
+      if (original_amount === 0) {
+        return;
+      }
+
+      chrome.storage.local.get(["new_amount"], (result) => {
+        if (result["new_amount"]) {
+          document.getElementById("new_amount").textContent = emailText(
+            parseFloat(result["new_amount"]),
+            original_amount
+          );
+        } else {
+          document.getElementById("new_amount").textContent = "0.00";
+        }
+      });
+    }
+  });
 };
 
 const initialize_email = () => {
