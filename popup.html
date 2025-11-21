@@ -6,64 +6,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/popup.css" />
     <script src="scripts/popup.js" defer></script>
+    <script src="scripts/listing.js" defer></script>
+    <script src="scripts/email.js" defer></script>
   </head>
   <body>
     <header>
       <h1 class="title">Listing Calculator</h1>
+      <ul class="tab">
+        <li class="tablinks" id="listingTab">Listing Calculator</li>
+        <li class="tablinks" id="emailTab">Email Calculator</li>
+      </ul>
     </header>
     <main>
-      <form>
-        <label for="total_cars"
-          ><span class="label-text">Total Cars</span></label
-        >
-        <input
-          type="number"
-          id="total_cars"
-          name="total_cars"
-          placeholder="Enter total cars"
-          required
-        /><br /><br />
+      <!-- ======================= -->
+      <!--          Start          -->
+      <!-- Listing Calculator Form -->
+      <!-- ======================= -->
+      <div id="listing-calculator">
+        <form>
+          <label for="total_cars"
+            ><span class="label-text">Total Cars</span></label
+          >
+          <input
+            type="number"
+            id="total_cars"
+            name="total_cars"
+            placeholder="Enter total cars"
+            required
+          /><br /><br />
 
-        <label for="new_cars"><span class="label-text">New Cars</span></label>
-        <input
-          type="number"
-          placeholder="Enter new cars"
-          id="new_cars"
-          name="new_cars"
-          required
-        /><br /><br />
-        <label for="cpo_cars"><span class="label-text">CPO Cars</span></label>
-        <input
-          type="number"
-          placeholder="Enter CPO cars"
-          id="cpo_cars"
-          name="cpo_cars"
-          required
-        /><br /><br />
+          <label for="new_cars"><span class="label-text">New Cars</span></label>
+          <input
+            type="number"
+            placeholder="Enter new cars"
+            id="new_cars"
+            name="new_cars"
+            required
+          /><br /><br />
+          <label for="cpo_cars"><span class="label-text">CPO Cars</span></label>
+          <input
+            type="number"
+            placeholder="Enter CPO cars"
+            id="cpo_cars"
+            name="cpo_cars"
+            required
+          /><br /><br />
 
-        <label for="original_amount"
-          ><span class="label-text">Original ($)</span></label
-        >
-        <input
-          type="number"
-          id="original_amount"
-          name="original_amount"
-          placeholder="Enter original $"
-          step="0.01"
-          required
-        /><br /><br />
-      </form>
-      <button type="button" id="calculateBtn">Calculate</button>
-      <button type="button" id="clearBtn">Clear</button>
+          <label for="original_amount"
+            ><span class="label-text">Original ($)</span></label
+          >
+          <input
+            type="number"
+            id="original_amount"
+            name="original_amount"
+            placeholder="Enter original $"
+            step="0.01"
+            required
+          /><br /><br />
+        </form>
+        <button type="button" class="calculate" id="calculateListingBtn">
+          Calculate
+        </button>
+        <button type="button" class="clear" id="clearListingBtn">Clear</button>
 
-      <h3>
-        New Cars: <span class="currency">$</span>
-        <span id="new_cars_result">0.00</span>
-      </h3>
-      <h3>
-        CPO Cars: <span class="currency">$</span>
-        <span id="cpo_cars_result">0.00</span>
-      </h3>
+        <h3>
+          New Cars: <span class="currency">$</span>
+          <span id="new_cars_result">0.00</span>
+        </h3>
+        <h3>
+          CPO Cars: <span class="currency">$</span>
+          <span id="cpo_cars_result">0.00</span>
+        </h3>
+      </div>
+      <!-- ======================= -->
+      <!--          Start          -->
+      <!-- Listing Calculator Form -->
+      <!-- ======================= -->
+      <!-- ======================= -->
+      <!--          Start          -->
+      <!-- Email Calculator Form -->
+      <!-- ======================= -->
+      <div id="email-calculator">
+        <form>
+          <label for="x_one"
+            ><span class="label-text">Original Width</span></label
+          >
+          <input
+            type="number"
+            id="x_one"
+            name="x_one"
+            placeholder="Enter Original Width"
+            required
+          /><br /><br />
+
+          <label for="y_one"
+            ><span class="label-text">Original Height</span></label
+          >
+
+          <input
+            type="number"
+            placeholder="Enter Original Height"
+            id="y_one"
+            name="y_one"
+            required
+          /><br /><br />
+          <label for="x_two"
+            ><span class="label-text">Excluded Width</span></label
+          >
+          <input
+            type="number"
+            placeholder="Enter Excluded Width"
+            id="x_two"
+            name="x_two"
+            required
+          /><br /><br />
+
+          <label for="y_two"
+            ><span class="label-text">Excluded Height</span></label
+          >
+          <input
+            type="number"
+            id="y_two"
+            name="y_two"
+            placeholder="Enter Excluded Height"
+            required
+          /><br /><br />
+
+          <label for="email_original_amount"
+            ><span class="label-text">Original ($)</span></label
+          >
+          <input
+            type="number"
+            id="email_original_amount"
+            name="email_original_amount"
+            placeholder="Enter original $"
+            step="0.01"
+            required
+          /><br /><br />
+        </form>
+        <button type="button" class="calculate" id="calculateEmailBtn">
+          Calculate
+        </button>
+        <button type="button" class="clear" id="clearEmailBtn">Clear</button>
+
+        <h3>
+          New Amount: <span class="currency">$</span>
+          <span id="new_amount">0.00</span>
+        </h3>
+      </div>
+      <!-- ======================= -->
+      <!--          Start          -->
+      <!-- Email Calculator Form -->
+      <!-- ======================= -->
     </main>
   </body>
 </html>

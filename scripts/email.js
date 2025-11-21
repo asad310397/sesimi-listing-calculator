@@ -1,0 +1,64 @@
+function emailText(result, original_amount) {
+  return (
+    (result.toFixed(2) * original_amount).toFixed(2) +
+    " (" +
+    (result * 100).toFixed(2) +
+    "%)"
+  );
+}
+function calculateEmailResults() {
+  const x_one = parseFloat(document.getElementById("x_one").value) || 0;
+  const y_one = parseFloat(document.getElementById("y_one").value) || 0;
+  const x_two = parseFloat(document.getElementById("x_two").value) || 0;
+  const y_two = parseFloat(document.getElementById("y_two").value) || 0;
+
+  const original_amount =
+    parseFloat(document.getElementById("email_original_amount").value) || 0;
+
+  if (x_one === 0 || y_one === 0 || x_two === 0 || y_two === 0) {
+    document.getElementById("new_amount").textContent = "0.00";
+    return;
+  }
+
+  let new_amount_result = (x_two * y_two) / (x_one * y_one);
+
+  document.getElementById("new_amount").textContent = emailText(
+    1 - new_amount_result,
+    original_amount
+  );
+
+  chrome.storage.local.set({ ["new_amount"]: new_amount_result.toFixed(2) });
+}
+
+function clearEmailResults() {
+  const inputs = ["x_one", "y_one", "x_two", "y_two", "email_original_amount"];
+  inputs.forEach((input) => {
+    document.getElementById(input).value = "";
+    chrome.storage.local.remove(input);
+  });
+
+  chrome.storage.local.remove("new_amount");
+  document.getElementById("new_amount").textContent = "0.00";
+}
+
+const onEmailLoad = () => {
+  calculateEmailResults();
+};
+
+const initialize_email = () => {
+  onEmailLoad();
+  const inputs = document.querySelectorAll("input[type='number']");
+  inputs.forEach((input) => {
+    input.addEventListener("input", saveTextOnChange);
+  });
+
+  document
+    .getElementById("calculateEmailBtn")
+    .addEventListener("click", calculateEmailResults);
+
+  document
+    .getElementById("clearEmailBtn")
+    .addEventListener("click", clearEmailResults);
+};
+
+document.addEventListener("DOMContentLoaded", initialize_email());

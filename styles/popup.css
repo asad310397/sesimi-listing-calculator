@@ -16,7 +16,7 @@ main {
   margin: 25px;
 }
 
-#calculateBtn {
+.calculate {
   font-weight: bold;
   border: none;
   border-radius: 5px;
@@ -24,7 +24,7 @@ main {
   background-color: #d1ff3b;
   width: 50%;
 }
-#clearBtn {
+.clear {
   color: #ffffff;
   border: #d1ff3b 2px solid;
   border-radius: 5px;
@@ -49,4 +49,26 @@ input {
 
 .currency {
   color: #f74c07;
+}
+
+.tab {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #313131;
+  display: flex;
+  justify-content: center;
+  .tablinks {
+    display: inline-block;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .active {
+    background-color: #d1ff3b;
+    color: #000000;
+  }
 }
