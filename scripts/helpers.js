@@ -4,6 +4,12 @@ function saveTextOnChange() {
 
   document.getElementById("new_cars_result").textContent = "0.00";
   document.getElementById("cpo_cars_result").textContent = "0.00";
+  document.getElementById("new_amount").textContent = "0.00";
+  document.getElementById("excl_amount").textContent = "0.00";
+  chrome.storage.local.remove("new_cars_result");
+  chrome.storage.local.remove("cpo_cars_result");
+  chrome.storage.local.remove("new_amount");
+  chrome.storage.local.remove("excl_amount");
 }
 
 function loadText() {
