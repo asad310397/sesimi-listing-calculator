@@ -1,67 +1,41 @@
-function saveTextOnChange() {
-  const newText = this.value;
-  chrome.storage.local.set({ [this.id]: newText });
-
-  document.getElementById("new_cars_result").textContent = "0.00";
-  document.getElementById("cpo_cars_result").textContent = "0.00";
-}
-
-function showListingCalculator() {
-  document.getElementById("listing-calculator").style.display = "block";
-  document.getElementById("email-calculator").style.display = "none";
-  document.getElementById("listingTab").classList.add("active");
-  document.getElementById("emailTab").classList.remove("active");
-  chrome.storage.local.set({ ["selected_tab"]: "listing" });
-}
-
-function showEmailCalculator() {
-  document.getElementById("listing-calculator").style.display = "none";
-  document.getElementById("email-calculator").style.display = "block";
-  document.getElementById("emailTab").classList.add("active");
-  document.getElementById("listingTab").classList.remove("active");
-  chrome.storage.local.set({ ["selected_tab"]: "email" });
-}
-
-const setTabs = () => {
+const getStorageTab = (tabs) => {
   chrome.storage.local.get(["selected_tab"], (result) => {
     if (result["selected_tab"]) {
-      selected_tab = result["selected_tab"];
-      if (selected_tab === "listing") {
-        showListingCalculator();
-      } else if (selected_tab === "email") {
-        showEmailCalculator();
-      }
+      tabs.filter((tab) => tab.id == result["selected_tab"])[0].showTab();
     } else {
-      chrome.storage.local.set({ ["selected_tab"]: "listing" });
-      showListingCalculator();
+      tabs.filter((tab) => tab.activeByDefault)[0].showTab()
     }
   });
 };
 
-function loadText() {
-  let elements = document.querySelectorAll("input[type='number']");
-  for (let i = 0; i < elements.length; i++) {
-    let currentKey = elements[i].id;
-    chrome.storage.local.get([currentKey], (result) => {
-      if (result[currentKey]) {
-        elements[i].value = result[currentKey];
-      }
-    });
+const openTab = (tabs, tabName) => {
+  tabs.forEach((tab) => {
+    document.getElementById(tab.name).style.display = "none";
+    document.getElementById(tab.btnName).classList.remove("active");
+  })
+
+  if(typeof tabName === "undefined"){
+    getStorageTab(tabs)
+  }
+  else{
+    tabs.filter((tab) => tab.name == tabName)[0].showTab()
   }
 }
 
-const initialize = () => {
-  setTabs();
 
+const initialize = () => {
+  const tabs = [new Tab("listing", "listing-calculator", "listingTab", true),
+     new Tab("email", "email-calculator", "emailTab")]
+
+  tabs.forEach((tab) => {
+    document
+      .getElementById(tab.btnName)
+      .addEventListener("click", () => {openTab(tabs, tab.name)})
+  })
+
+  openTab(tabs);
   loadText();
 
-  document
-    .getElementById("listingTab")
-    .addEventListener("click", showListingCalculator);
-
-  document
-    .getElementById("emailTab")
-    .addEventListener("click", showEmailCalculator);
 };
 
 document.addEventListener("DOMContentLoaded", initialize());
