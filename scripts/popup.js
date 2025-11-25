@@ -1,39 +1,33 @@
+const tabs = ["listing", "email"]
 function saveTextOnChange() {
   const newText = this.value;
   chrome.storage.local.set({ [this.id]: newText });
 
   document.getElementById("new_cars_result").textContent = "0.00";
   document.getElementById("cpo_cars_result").textContent = "0.00";
+  document.getElementById("new_amount").textContent = "0.00";
+  document.getElementById("excl_amount").textContent = "0.00";
 }
 
-function showListingCalculator() {
-  document.getElementById("listing-calculator").style.display = "block";
-  document.getElementById("email-calculator").style.display = "none";
-  document.getElementById("listingTab").classList.add("active");
-  document.getElementById("emailTab").classList.remove("active");
-  chrome.storage.local.set({ ["selected_tab"]: "listing" });
-}
-
-function showEmailCalculator() {
-  document.getElementById("listing-calculator").style.display = "none";
-  document.getElementById("email-calculator").style.display = "block";
-  document.getElementById("emailTab").classList.add("active");
-  document.getElementById("listingTab").classList.remove("active");
-  chrome.storage.local.set({ ["selected_tab"]: "email" });
+function showTab(tab) {
+  tabs.forEach((tab) => {
+    document.getElementById(`${tab}-calculator`).style.display = "none";
+    document.getElementById(`${tab}Tab`).classList.remove("active");
+  })
+  
+  document.getElementById(`${tab}-calculator`).style.display = "block";
+  document.getElementById(`${tab}Tab`).classList.add("active");
+  chrome.storage.local.set({ ["selected_tab"]: tab });
 }
 
 const setTabs = () => {
   chrome.storage.local.get(["selected_tab"], (result) => {
     if (result["selected_tab"]) {
       selected_tab = result["selected_tab"];
-      if (selected_tab === "listing") {
-        showListingCalculator();
-      } else if (selected_tab === "email") {
-        showEmailCalculator();
-      }
+      showTab(selected_tab)
     } else {
       chrome.storage.local.set({ ["selected_tab"]: "listing" });
-      showListingCalculator();
+      showTab("listing")
     }
   });
 };
@@ -55,13 +49,12 @@ const initialize = () => {
 
   loadText();
 
-  document
-    .getElementById("listingTab")
-    .addEventListener("click", showListingCalculator);
+  tabs.forEach((tab) => {
+    document
+      .getElementById(`${tab}Tab`)
+      .addEventListener("click", () => showTab(tab));
+  })
 
-  document
-    .getElementById("emailTab")
-    .addEventListener("click", showEmailCalculator);
 };
 
 document.addEventListener("DOMContentLoaded", initialize());
