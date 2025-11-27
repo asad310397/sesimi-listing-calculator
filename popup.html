@@ -25,44 +25,59 @@
       <div id="listing-calculator">
         <form>
           <label for="total_cars"
-            ><span class="label-text">Total Cars</span></label
-          >
+            ><span class="label-text"
+              >Total Cars <small id="total_cars_calc"></small></span
+          ></label>
           <input
-            type="number"
+            type="text"
             id="total_cars"
             name="total_cars"
             placeholder="Enter total cars"
             required
-          /><br /><br />
+          />
+          <br />
+          <br />
 
-          <label for="new_cars"><span class="label-text">New Cars</span></label>
+          <label for="new_cars"
+            ><span class="label-text"
+              >New Cars <small id="new_cars_calc"></small> </span
+          ></label>
           <input
-            type="number"
+            type="text"
             placeholder="Enter new cars"
             id="new_cars"
             name="new_cars"
             required
-          /><br /><br />
-          <label for="cpo_cars"><span class="label-text">CPO Cars</span></label>
+          /><br />
+          <br />
+
+          <label for="cpo_cars"
+            ><span class="label-text"
+              >CPO Cars <small id="cpo_cars_calc"></small> </span
+          ></label>
           <input
-            type="number"
+            type="text"
             placeholder="Enter CPO cars"
             id="cpo_cars"
             name="cpo_cars"
             required
-          /><br /><br />
+          />
+          <br />
+          <br />
 
           <label for="original_amount"
-            ><span class="label-text">Original ($)</span></label
-          >
+            ><span class="label-text"
+              >Original ($) <small id="original_amount_calc"></small> </span
+          ></label>
           <input
-            type="number"
+            type="text"
             id="original_amount"
             name="original_amount"
             placeholder="Enter original $"
             step="0.01"
             required
-          /><br /><br />
+          /><br />
+          <br />
         </form>
         <button type="button" class="calculate" id="calculateListingBtn">
           Calculate
